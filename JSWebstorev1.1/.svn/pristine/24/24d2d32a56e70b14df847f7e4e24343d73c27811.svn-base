@@ -1,0 +1,65 @@
+/**
+ * Created by Alex on 17.12.13.
+ */
+WEBSTORE.namespace("WEBSTORE.Queries");
+
+WEBSTORE.Queries = (function() {
+
+    var config = WEBSTORE.Application.getConfig();
+
+    var queriesConstants = {
+        product: "/product",
+        products: "/products",
+        page: "/page",
+        size: "/size",
+        find: "/find",
+        count: "/count",
+        slash: "/",
+        image: "/image",
+        images: "/images",
+        comments: "/comments",
+        springSecurityCheck: "/j_spring_security_check"
+    };
+
+    return {
+
+        getAllProductQuery: function() {
+            return config.domain + queriesConstants.products;
+        },
+
+        getProductByIdQuery: function(id) {
+            return config.domain + queriesConstants.product + queriesConstants.slash + id;
+        },
+
+        getFindProductQuery: function(pattern) {
+            return config.domain + queriesConstants.product + queriesConstants.find + queriesConstants.slash + pattern;
+        },
+
+        getPagesCountQuery: function() {
+            return config.domain + queriesConstants.product + queriesConstants.count + queriesConstants.page + queriesConstants.slash + config.pageSize;
+        },
+
+        getPageQuery: function(pageNumber) {
+            return config.domain + queriesConstants.product + queriesConstants.page + queriesConstants.slash + pageNumber
+                + queriesConstants.size + queriesConstants.slash + config.pageSize;
+        },
+
+        getImageByProductId: function(productId) {
+            return config.domain + queriesConstants.product + queriesConstants.slash + productId + queriesConstants.image;
+        },
+
+        getImagesByProductId: function(productId) {
+            return config.domain + queriesConstants.product + queriesConstants.slash + productId + queriesConstants.images;
+        },
+
+        getCommentsByProductId: function(productId) {
+            return config.domain + queriesConstants.product + queriesConstants.slash + productId + queriesConstants.comments;
+        },
+
+        springSecurityCheck: function() {
+            return config.domain + queriesConstants.springSecurityCheck;
+        }
+
+    };
+
+}());

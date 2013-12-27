@@ -1,0 +1,22 @@
+/**
+ * Created by Alex on 17.12.13.
+ */
+WEBSTORE.namespace("WEBSTORE.Application");
+
+WEBSTORE.Application = (function() {
+
+    var config = {
+        domain: "http://localhost:8080/webstore",
+        pageSize: 3,
+        loadPreviewImage: true
+    };
+
+    return {
+
+        getConfig: function() {
+            return config;
+        }
+
+    };
+
+}());

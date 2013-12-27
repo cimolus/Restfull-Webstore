@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webstore</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/ImageGallery.css">
+
+    <!--Libs -->
+    <script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/js/lib/fisheye-iutil.min.js"></script>
+    <script type="text/javascript" src="/js/lib/dock-example1.js"></script>
+    <script type="text/javascript" src="/js/lib/dust-full-2.2.0.js"></script>
+
+    <script type="text/javascript" src="/js/Namespace.js"></script>
+    <script type="text/javascript" src="/js/Application.js"></script>
+    <script type="text/javascript" src="/js/Queries.js"></script>
+    <script type="text/javascript" src="/js/models/Basket.js"></script>
+    <script type="text/javascript" src="/js/Paginator.js"></script>
+    <script type="text/javascript" src="/js/services/CommentService.js"></script>
+    <script type="text/javascript" src="/js/services/GoodsService.js"></script>
+    <script type="text/javascript" src="/js/templates/DefaultTemplate.js"></script>
+    <script type="text/javascript" src="/js/TemplateBuilder.js"></script>
+    <script type="text/javascript" src="/js/Pages.js"></script>
+    <script type="text/javascript" src="/js/services/EventService.js"></script>
+    <script type="text/javascript" src="/js/services/BasketService.js"></script>
+    <script type="text/javascript" src="/js/services/AuthService.js"></script>
+    <script type="text/javascript" src="/js/Loader.js"></script>
+
+</head>
+<body>
+<header class="boxShadow">
+    <div class="logo"><img src="/images/logo.jpg"/></div>
+    <nav id="dock">
+        <div class="dock-container">
+            <a class="dock-item" href="#"><span>Корзина</span><img src="/images/dock/basket.jpg" alt="Корзина" /></a>
+            <a class="dock-item" onclick="WEBSTORE.Pages.home();" ><span>Домой</span><img id="home" src="/images/dock/home.png" alt="Домой" /></a>
+            <a class="dock-item" onclick="WEBSTORE.Pages.products();"><span>Все товары</span><img id="productsList" src="/images/dock/portfolio.png" alt="Все товары" /></a>
+            <a class="dock-item" href="#"><span>Поиск</span><img src="/images/dock/search.png" alt="Поиск" /></a>
+            <a class="dock-item" href="#"><span>FAQ</span><img src="/images/dock/faq.jpg" alt="FAQ" /></a>
+            <a class="dock-item" href="#"><span>Отправить письмо</span><img src="/images/dock/email.png" alt="send" /></a>
+            <a class="dock-item" href="#"><span>RSS</span><img src="/images/dock/rss.png" alt="RSS" /></a>
+        </div>
+    </nav>
+</header>
+
+<div class="container boxShadow">
+    <aside>
+        <div class="authorithation">
+            <h3>Авторизация</h3>
+            <div>
+                <input class="input_field" id="j_username" name="j_username" size="20" maxlength="50" type="text" placeholder="Логин" AUTOCOMPLETE="off"/>
+                <input class="input_field" id="j_password" name="j_password" size="20" maxlength="50" type="password" placeholder="Пароль" AUTOCOMPLETE="off" />
+                <input class="input_submit" id="j_submit" type="submit" value="Войти" />
+            </div>
+            <a href="#" >Регистрация</a>
+        </div>
+
+    </aside>
+    <section>
+        <div id="content"></div>
+        <div id="paginator"></div>
+    </section>
+</div>
+<footer class="boxShadow">Copyright © 2013 GRSU Kassirov Inc. All rights reserved.</footer>
+</body>
+</html>

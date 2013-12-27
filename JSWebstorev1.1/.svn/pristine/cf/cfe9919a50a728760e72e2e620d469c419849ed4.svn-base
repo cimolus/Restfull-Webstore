@@ -1,0 +1,53 @@
+/**
+ * Created by Alex on 18.12.13.
+ */
+
+WEBSTORE.namespace("WEBSTORE.Template");
+
+WEBSTORE.Template = (function() {
+
+    var productsTemplate =
+        '{#.}'
+        +'<article>'
+            +'<img src="{images[0].imageUrl}" onclick="WEBSTORE.Pages.product({id})"/>'
+            +'<div class="content">'
+                + '<h3>{name}</h3>'
+                + '<p class="description">{description}</p>'
+                +'<h6>Price: {price}</h6>'
+                + '<span onclick="WEBSTORE.pages.detaileProduct({id})">Подробнее</span>'
+            +'</div>'
+        +'</article>'
+        +'{/.}';
+
+    var productTemplate =
+        '<h2 class="productName">{name}</h2>'
+        +'<p class="description">{description}</p>'
+        +'<div class="imagesContainer"></div>'
+        +'<p class="detaileDescription">{detaileDescription}</p>'
+        +'<div class="price">{price}</div>'
+        +'<button onload="WEBSTORE.BasketService.checkProduct({id})" onclick="WEBSTORE.BasketService.toogleProduct({id})" class="addToBasketButton"></button>'
+        +'<hr>'
+        +'<div id="showComments" onclick="WEBSTORE.CommentService.loadCommentsByProductId({id})" >Показать комментарии</div>';
+
+    var commentsTemplate =
+        'div class="commentContainer">'
+            +'<h5 class="author">{author}</h5>'
+            + '<div class="text">{text}</div>'
+        +'</div>';
+
+    return {
+        getProductsTemplate: function() {
+            return productsTemplate;
+        },
+
+        getProductTemplate: function() {
+            return productTemplate;
+        },
+
+        getCommentsTemplate: function() {
+            return commentsTemplate;
+        }
+
+    };
+
+}());

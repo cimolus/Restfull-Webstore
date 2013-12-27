@@ -1,0 +1,103 @@
+/**
+ * Created by Alex on 18.12.13.
+ */
+
+WEBSTORE.namespace("WEBSTORE.Template");
+
+WEBSTORE.Template = (function() {
+
+    var authorities = {
+        "ROLE_ADMIN": "<button>Панель администрирования</button><br>",
+        "ROLE_USER": "</br>"
+    };
+
+    var productsTemplate =
+        '{#.}'
+        +'<article>'
+            +'<img src="{images[0].imageUrl}" onclick="WEBSTORE.Pages.product({id})"/>'
+            +'<div class="content">'
+                + '<h3>{name}</h3>'
+                + '<p class="description">{description}</p>'
+                +'<h6>Price: {price}</h6>'
+                + '<span onclick="WEBSTORE.pages.detaileProduct({id})">Подробнее</span>'
+            +'</div>'
+        +'</article>'
+        +'{/.}';
+
+    var productTemplate =
+        '<h2 class="productName">{name}</h2>'
+        +'<p class="description">{description}</p>'
+        +'<div class="imagesContainer">'
+            +'{#images}'
+                + '<img src="{imageUrl}" />'
+            +'{/images}'
+        +'</div>'
+        +'<p class="detaileDescription">{detaileDescription}</p>'
+        +'<div class="price">{price}</div>'
+        +'<button onload="WEBSTORE.BasketService.checkProduct({id})" onclick="WEBSTORE.BasketService.toogleProduct({id})" class="addToBasketButton"></button>'
+        +'<hr>'
+        +'<div id="showComments" onclick="WEBSTORE.CommentService.loadCommentsByProductId({id})" >Показать комментарии</div>';
+
+    var commentsTemplate =
+        'div class="commentContainer">'
+            +'<h5 class="author">{author}</h5>'
+            + '<div class="text">{text}</div>'
+        +'</div>';
+
+    var nonAuth =
+        '<h3>Авторизация</h3>'
+        +'<div>'
+            +'<input class="input_field" id="j_username" name="j_username" size="20" maxlength="50" type="text" placeholder="Логин" AUTOCOMPLETE="off"/>'
+            +'<input class="input_field" id="j_password" name="j_password" size="20" maxlength="50" type="password" placeholder="Пароль" AUTOCOMPLETE="off" />'
+            +'<input class="input_submit" id="j_submit" type="submit" value="Войти" onclick="WEBSTORE.AuthService.login();" />'
+        +'</div>'
+        +'<button onclick="WEBSTORE.BasketService.orderProducts();">Регистрация</button>';
+
+    var authTrue = function(principal) {
+        var authoritiesAbilities = "";
+        for( var i = 0; i < principal.authorities.length; i++ ) {
+            authoritiesAbilities += authorities[principal.authorities[i].authority];
+        }
+        return 'Hello, ' + principal.username + '<br>'
+            + authoritiesAbilities
+            +'<button onclick="WEBSTORE.AuthService.logout();">Logout</button>';
+    };
+
+    var basketProductTemplate =
+        '{#.}'
+            +'<img src="{images[0].imageUrl}" onclick="WEBSTORE.Pages.product({id})"/>'
+            + '<h3>{name}</h3>'
+            +'<h6>Price: {price}</h6>'
+            +'<hr>'
+        +'{/.}';
+
+    return {
+        getProductsTemplate: function() {
+            return productsTemplate;
+        },
+
+        getProductTemplate: function() {
+            return productTemplate;
+        },
+
+        getCommentsTemplate: function() {
+            return commentsTemplate;
+        },
+
+        getNonAuth: function() {
+            return nonAuth;
+        },
+
+        getAuth: function(principal) {
+            if ( principal.authenticated ) {
+                return authTrue(principal);
+            } else return nonAuth;
+        },
+
+        getBasketProductTemplate: function() {
+            return basketProductTemplate;
+        }
+
+    };
+
+}());

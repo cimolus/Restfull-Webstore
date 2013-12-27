@@ -1,0 +1,52 @@
+/**
+ * Created by Alex on 17.12.13.
+ */
+WEBSTORE.namespace("WEBSTORE.GoodsService");
+
+WEBSTORE.GoodsService = (function() {
+    /*dependencies*/
+    var queries = WEBSTORE.Queries;
+    var config = WEBSTORE.Application.getConfig();
+
+    var product = null;
+    var products = null;
+
+    return {
+
+        getProduct: function() {
+            return product;
+        },
+
+        loadProductById: function(id) {
+            $.ajax({
+                type: 'GET',
+                url: queries.getProductByIdQuery(id),
+                success: function(response) {
+                    product = response;
+                    WEBSTORE.EventService.fireEvent( WEBSTORE.EventService.goodsEvent.productLoaded );
+                },
+                error: function() {
+                    alert("Error!");
+                }
+            });
+        },
+
+        loadProductsOnPage: function(page) {
+            $.getJSON(queries.getPageQuery(page), function(response) {
+                products = response;
+                WEBSTORE.EventService.fireEvent( WEBSTORE.EventService.goodsEvent.productsLoaded );
+            });
+        },
+
+        productLoadedHandler: function() {
+            WEBSTORE.TemplateBuilder.buildTemplate(  WEBSTORE.Template.getProductTemplate(),  product  );
+        },
+
+        productsLoadedHandler: function() {
+            WEBSTORE.TemplateBuilder.buildTemplate(  WEBSTORE.Template.getProductsTemplate(),  products  );
+
+        }
+
+    };
+
+}());
