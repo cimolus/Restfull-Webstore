@@ -1,0 +1,20 @@
+WEBSTORE.pages = {
+
+	startPage: function() {
+		var html = "<p>Home page</p>";
+		var el = document.getElementById("content");
+		el.innerHTML = html;
+	}(),
+
+	home : function() {
+		var html = "<p>Home page</p>";
+		var el = document.getElementById("content");
+		el.innerHTML = html;
+	},
+
+	products: function() {
+		WEBSTORE.GoodsService.getProducts();
+	}
+
+
+};

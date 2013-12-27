@@ -1,0 +1,37 @@
+package by.kassirov.webstore.domain;
+
+public class Principal {
+	
+	private boolean authentication;
+	private String username;
+	private boolean administration;
+	
+	public Principal() {}
+
+	public boolean isAuthenticated() {
+		return authentication;
+	}
+
+	public void setAuthentication(boolean authentication) {
+		this.authentication = authentication;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean isAdministrator() {
+		return administration;
+	}
+
+	public void setAdministration(boolean administration) {
+		this.administration = administration;
+	}
+	
+	
+	
+}

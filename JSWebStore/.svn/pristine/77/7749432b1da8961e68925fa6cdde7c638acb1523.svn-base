@@ -1,0 +1,4 @@
+
+WEBSTORE.config = {
+	domain: "localhost:8080/webstore"
+};

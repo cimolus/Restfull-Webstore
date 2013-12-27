@@ -1,0 +1,27 @@
+package by.kassirov.webstore.controllers;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import by.kassirov.webstore.domain.Image;
+import by.kassirov.webstore.services.ImageService;
+
+@Controller
+public class ImageController {
+	
+	@Autowired
+	private ImageService imageService;
+	
+	@RequestMapping( value = "/image/")
+	@ResponseBody
+	public Image getFirstImageByProductId( @PathVariable int id, HttpServletResponse response ) {
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		return imageService.getImageByProductId(id);
+	}
+	
+}
